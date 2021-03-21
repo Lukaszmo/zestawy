@@ -14,15 +14,26 @@ class ReportA {
 
     public function getData(int $min, int $max, int $count): ? array
     {
-          
-        $response = $this->client->request(
-            'GET',
-            "http://www.randomnumberapi.com/api/v1.0/random?min= {$min} &max= {$max} &count= {$count} "
-        );
         
-        $content = $response->getContent();
-        $content = json_decode($content);
+        $resultArr = Array();
+        $calls = ceil($count/100);
+        $i=1;
+        
+        while ($i <= $calls) {
+            
+            if ($i == $calls) { $count=($count%100);} 
+            
+            $response = $this->client->request(
+                'GET',
+                "http://www.randomnumberapi.com/api/v1.0/random?min= {$min} &max= {$max} &count= {$count} "
+            );
+            
+            $content = $response->getContent();
+            $content = json_decode($content);
+            $resultArr = array_merge($resultArr,$content);
+            $i++;
+        }
       
-        return $content;
+        return $resultArr;
     }
 }
