@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+        {% block stylesheets %}
+            {#{{ encore_entry_link_tags('app') }}#}
+        {% endblock %}
+
+        {% block javascripts %}
+            {#{{ encore_entry_script_tags('app') }}#}
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+		<form action="/reports">
+			<label >Zestaw A</label><br><br>
+			<label for="min">Min:</label>
+			<input type="number" id="min" name="min" min="0" max="80" value=0><br><br>
+			<label for="max">Max:</label>
+			<input type="number" id="max" name="max" min="0" max="80" value=80><br><br>
+			<label >Zestaw B</label><br><br>
+			<label for="minstr">Min:</label>
+			<input type="number" id="minstr" name="minstr" min="2" max="100" value=2><br><br>
+			<label for="maxstr">Max:</label>
+			<input type="number" id="maxstr" name="maxstr" min="2" max="100" value=100><br><br>
+			<label for="count">Rozmiar zestawu:</label>
+			<input type="number" id="count" name="count" min="5" max="1000" value=5><br><br>
+			<input type="submit" value="Submit">
+		</form>
+    </body>
+</html>
